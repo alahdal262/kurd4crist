@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Donate | Kurds for Christ</title>
+<meta name="description" content="Support Kurds for Christ: give once or monthly to Faith & Mission, Missionary Support, Humanitarian Relief, Church Support or Community Programmes.">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0F3F29">
+<!-- Future launch: <link rel="canonical" href="https://www.kurdsforchrist.org/donate"> -->
+<meta property="og:title" content="Donate | Kurds for Christ">
+<meta property="og:site_name" content="Kurds for Christ">
+<link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
+<script src="app.js" defer></script>
+</head>
+<body class="no-mobile-bar">
+<div id="kfc-header"></div>
+<main id="main" tabindex="-1">
+
+<section class="page-hero page-hero--paper page-hero--compact" aria-labelledby="ph-title">
+ <div class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li><a href="get-involved.html">Get Involved</a></li><li aria-current="page">Donate</li></ol></nav>
+  <p class="eyebrow">Donate</p>
+  <h1 id="ph-title">Give hope. Strengthen communities.</h1>
+  <p class="lede">Your gift will help share the Gospel, support missionaries and churches, provide relief and build stronger futures for Kurdish Christian communities.</p>
+ </div>
+</section>
+
+<section class="section section--donate" aria-label="Donation form">
+ <div class="container">
+  <div class="notice notice--red mb-3" role="note"><i data-lucide="octagon-alert" aria-hidden="true"></i><p><strong>Donation processing is not active in this private prototype.</strong> No payment will be taken and no details will be stored. This page demonstrates the design only.</p></div>
+  <div class="donate-layout">
+   <form class="donate-card" id="donate-form" novalidate>
+    <div class="donate-card__head"><h2>Make a donation</h2><span class="tag"><i data-lucide="lock" aria-hidden="true"></i> Secure payment: future phase</span></div>
+    <div class="donate-card__body">
+     <fieldset><legend class="step-label"><span aria-hidden="true">1</span> How often would you like to give?</legend>
+      <div class="seg">
+       <label><input type="radio" name="freq" value="once" checked><span>One-time</span></label>
+       <label><input type="radio" name="freq" value="monthly"><span><i data-lucide="repeat" aria-hidden="true"></i> Monthly</span></label>
+      </div>
+     </fieldset>
+     <fieldset><legend class="step-label"><span aria-hidden="true">2</span> Choose an amount</legend>
+      <div class="amounts">
+       <label><input type="radio" name="amount" value="10"><span>£10</span></label>
+       <label><input type="radio" name="amount" value="25" checked><span>£25</span></label>
+       <label><input type="radio" name="amount" value="50"><span>£50</span></label>
+       <label><input type="radio" name="amount" value="100"><span>£100</span></label>
+       <label><input type="radio" name="amount" value="custom"><span class="custom-lbl">Custom amount</span></label>
+      </div>
+      <div class="custom-amount" id="custom-wrap" hidden><label class="visually-hidden" for="custom-amt">Custom amount in pounds</label><span class="cur" aria-hidden="true">£</span><input class="input" id="custom-amt" type="number" inputmode="decimal" min="1" step="1" placeholder="Enter amount"></div>
+      <p class="impact-line" id="impact-line" aria-live="polite">Every gift, of any size, is recorded and used responsibly.</p>
+     </fieldset>
+     <fieldset><legend class="step-label"><span aria-hidden="true">3</span> Where should your gift go?</legend>
+      <div class="fund-opts">
+       <label><input type="radio" name="fund" value="most" data-label="Where Most Needed" checked><span><span><strong>Where Most Needed</strong><small>Lets the trustees direct your gift to the greatest need.</small></span></span></label>
+       <label><input type="radio" name="fund" value="faith" data-label="Faith &amp; Mission"><span><span><strong>Faith &amp; Mission</strong><small>Evangelism, Bibles, discipleship and digital mission.</small></span></span></label>
+       <label><input type="radio" name="fund" value="missionary" data-label="Missionary Support"><span><span><strong>Missionary Support</strong><small>Approved support for missionaries and pastors.</small></span></span></label>
+       <label><input type="radio" name="fund" value="relief" data-label="Humanitarian Relief"><span><span><strong>Humanitarian Relief</strong><small>Emergency help, essentials and recovery.</small></span></span></label>
+       <label><input type="radio" name="fund" value="church" data-label="Church Support"><span><span><strong>Church Support</strong><small>Resources, training and equipment for churches.</small></span></span></label>
+       <label><input type="radio" name="fund" value="community" data-label="Community Programmes"><span><span><strong>Community Programmes</strong><small>English, skills, families and inclusion.</small></span></span></label>
+      </div>
+      <p class="small muted mt-1 mb-0">Gifts to a specific fund are restricted and will only be used for that purpose.</p>
+     </fieldset>
+     <fieldset><legend class="step-label"><span aria-hidden="true">4</span> Gift Aid</legend>
+      <label class="check"><input type="checkbox" disabled><span><strong>Boost your gift by 25% with Gift Aid</strong><br><span class="small muted">Available once Kurds for Christ is registered with the Charity Commission and HMRC.</span></span></label>
+     </fieldset>
+     <div class="pay-ph"><i data-lucide="credit-card" aria-hidden="true"></i><strong>Payment details</strong><br>A secure, PCI-compliant payment provider will be added in a later phase. No card or bank fields are included in this prototype.</div>
+     <button class="btn btn--gold btn--lg btn--block" type="submit"><i data-lucide="heart" aria-hidden="true"></i> <span id="donate-btn-text">Donate £25</span></button>
+     <p class="small muted center mb-0">Prototype only: pressing this button will not take a payment.</p>
+    </div>
+   </form>
+   <aside class="summary" aria-label="Donation summary">
+    <div class="summary-card on-dark">
+     <img class="sun-bg" src="assets/sun-large.svg" alt="">
+     <h2>Your gift</h2>
+     <div class="amount" id="sum-amount" aria-live="polite">£25</div>
+     <div class="freq" id="sum-freq">One-time gift</div>
+     <dl><div><dt>Fund</dt><dd id="sum-fund">Where Most Needed</dd></div><div><dt>Gift Aid</dt><dd>Not yet available</dd></div><div><dt>Status</dt><dd>Prototype: not processed</dd></div></dl>
+    </div>
+    <div class="card card--paper">
+     <h3 class="h-sm">Our promise to you</h3>
+     <ul class="assurance">
+      <li><i data-lucide="shield-check" aria-hidden="true"></i> Restricted gifts are used only for their stated purpose.</li>
+      <li><i data-lucide="scale" aria-hidden="true"></i> Separate funding streams for faith, community, humanitarian and church work.</li>
+      <li><i data-lucide="file-text" aria-hidden="true"></i> Annual reports and accounts will be published once registered.</li>
+      <li><i data-lucide="lock" aria-hidden="true"></i> Your data will never be sold or shared for marketing.</li>
+     </ul>
+    </div>
+    <p class="small muted">Prefer to give another way? Bank transfer, cheque and church giving options will be listed after registration. <a href="contact.html?topic=giving">Contact us</a></p>
+   </aside>
+  </div>
+ </div>
+</section>
+
+</main>
+<div id="kfc-footer"></div>
+<noscript><p style="padding:16px;text-align:center">This private prototype uses JavaScript for navigation and the donation preview. <a href="index.html">Home</a></p></noscript>
+</body>
+</html>
