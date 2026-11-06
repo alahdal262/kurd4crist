@@ -335,6 +335,20 @@
   });
 
   var header = $("#site-header");
+  /* Collapse the header to the Menu-button layout whenever the full nav would overflow (long translations, mid-size screens). */
+  function fitHeader() {
+    if (!header) return;
+    var inner = $(".header-inner", header);
+    var over = function () { return inner && inner.scrollWidth > inner.clientWidth + 1; };
+    header.classList.remove("is-compact", "is-tight");
+    if (over()) header.classList.add("is-tight");
+    if (over()) { header.classList.remove("is-tight"); header.classList.add("is-compact"); }
+  }
+  fitHeader();
+  window.addEventListener("resize", fitHeader);
+  window.addEventListener("load", fitHeader);
+  document.addEventListener("kfc:lang", fitHeader);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitHeader);
   var onScroll = function () { if (header) header.classList.toggle("is-scrolled", window.scrollY > 8); };
   window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
 
@@ -379,7 +393,7 @@
       }
     });
     $$("a", drawer).forEach(function (a) { a.addEventListener("click", function () { if (a.hash && a.pathname === location.pathname) closeDrawer(); }); });
-    window.addEventListener("resize", function () { if (window.innerWidth > 1160) closeDrawer(); });
+    window.addEventListener("resize", function () { if (window.innerWidth > 1160 && !(header && header.classList.contains("is-compact"))) closeDrawer(); });
   }
 
   /* Toast */
