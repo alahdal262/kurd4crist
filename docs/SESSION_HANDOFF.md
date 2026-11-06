@@ -15,3 +15,6 @@
 - Blocked: no GitHub credentials, so nothing is pushed yet. The hermes-broker SSH key wasn't used. Next: `git push -u origin main gh-pages`,
   then GitHub Settings > Pages: branch `gh-pages` /(root), custom domain kurdsforchrist.org, Enforce HTTPS.
   Optional later: turn on the Cloudflare proxy (orange cloud) once the GitHub cert is issued. SSL mode is already "full".
+- 2026-11-06 LIVE: https://kurdsforchrist.org is served by GitHub Pages from `gh-pages`. The certificate is approved and HTTPS is enforced. www redirects to the apex.
+  Token is in `.claude/Github` (git-ignored). To republish after changing public/: `git branch -f gh-pages $(git subtree split --prefix public HEAD)` and push gh-pages.
+  The Cloudflare proxy is left off (DNS-only) so GitHub can renew its certificate.
