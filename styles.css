@@ -126,7 +126,8 @@ ul, ol { margin: 0 0 1em; padding-inline-start: 1.25em; }
 
 .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); flex: none; }
 .brand:hover { color: var(--ink); text-decoration: none; }
-.brand__mark { width: 46px; height: 46px; flex: none; }
+.brand__mark { height: 46px; flex: none; display: flex; align-items: center; }
+.brand__mark img { height: 100%; width: auto; display: block; }
 .brand__text { display: flex; flex-direction: column; line-height: 1.05; }
 .brand__name { font-family: var(--serif); font-weight: 600; font-size: 1.25rem; letter-spacing: -.01em; }
 .brand__tag { font-size: .625rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-top: 5px; font-weight: 600; }
@@ -759,7 +760,7 @@ html[dir="rtl"] body { font-family: var(--sans), var(--arabic); }
   :root { --header-h: 66px; }
   body { font-size: 1rem; padding-bottom: 76px; }
   body.no-mobile-bar { padding-bottom: 0; }
-  .brand__mark { width: 40px; height: 40px; }
+  .brand__mark { height: 40px; }
   .brand__name { font-size: 1.0625rem; }
   .brand__tag { display: none; }
   .header-actions .lang, .header-actions .btn--partner, .header-actions .btn--donate { display: none; }
