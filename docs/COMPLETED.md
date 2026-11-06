@@ -4,3 +4,4 @@
 - 2026-11-06: Full site translation (Kurmanji, Sorani, Arabic) with working language switcher and RTL
 - 2026-11-06: Full site translation (Kurmanji, Sorani, Arabic) with working language switcher and RTL
 - 2026-11-06: Fixed header menu overflowing the page (all languages and widths)
+- 2026-11-06: Fixed header menu overflowing the page (all languages and widths)

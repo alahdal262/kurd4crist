@@ -35,3 +35,4 @@
 - 1,001 strings per language, machine-assisted. NEEDS NATIVE-SPEAKER REVIEW before public launch, especially Bible verses, legal terms (CIO, Gift Aid) and trustee name spellings.
 - When English text changes, the changed string falls back to English until it's added to the dictionaries. Re-extract with jsdom (scratchpad script; see git history for the approach).
 - 2026-11-06: Header no longer overflows. app.js fitHeader() measures the row: full nav, then tight (no Partner button or tagline), then compact Menu button. The header row is now up to 1480px wide.
+- 2026-11-06: Header no longer overflows. app.js fitHeader() measures the row: full nav, then tight (no Partner button or tagline), then compact Menu button. The header row is now up to 1480px wide.
