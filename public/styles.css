@@ -831,3 +831,11 @@ html[dir="rtl"] body { font-family: var(--sans), var(--arabic); }
 @media print {
   .site-header, .proto-bar, .mobile-bar, .site-footer, .toast { display: none !important; }
 }
+
+/* Arabic-script languages (Arabic, Sorani): Latin glyphs keep the brand fonts, Arabic glyphs use Noto Naskh. */
+html[lang="ar"], html[lang="ckb"] {
+  --serif: "Fraunces", "Noto Naskh Arabic", "Geeza Pro", Georgia, serif;
+  --sans: "Inter", "Noto Naskh Arabic", "Geeza Pro", system-ui, sans-serif;
+}
+html[lang="ar"] body, html[lang="ckb"] body { line-height: 1.75; }
+html[lang="ar"] *, html[lang="ckb"] * { letter-spacing: 0 !important; }

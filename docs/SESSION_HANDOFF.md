@@ -18,3 +18,11 @@
 - 2026-11-06 LIVE: https://kurdsforchrist.org is served by GitHub Pages from `gh-pages`. The certificate is approved and HTTPS is enforced. www redirects to the apex.
   Token is in `.claude/Github` (git-ignored). To republish after changing public/: `git branch -f gh-pages $(git subtree split --prefix public HEAD)` and push gh-pages.
   The Cloudflare proxy is left off (DNS-only) so GitHub can renew its certificate.
+
+## 2026-11-06 — Site translated: Kurmanji, Sorani, Arabic
+- app.js: the language buttons now really translate. A DOM text and attribute swap uses dictionaries in `public/i18n/{kmr,ckb,ar}.js`; the key is the English text, normalised for whitespace.
+  Sorani and Arabic set `dir=rtl` and the matching `lang`. The choice is remembered in localStorage. Links can force a language with `?lang=ku|so|ar`.
+  Dynamic text (donation summary, dialogs, filter toasts) goes through `t()`.
+- styles.css: Arabic-script fonts (Noto Naskh) for headings and body, and no letter-spacing for ar/ckb.
+- 1,001 strings per language, machine-assisted. NEEDS NATIVE-SPEAKER REVIEW before public launch, especially Bible verses, legal terms (CIO, Gift Aid) and trustee name spellings.
+- If English text in the HTML changes, that string shows in English until its translation is added to the i18n files.

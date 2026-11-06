@@ -13,6 +13,10 @@
     get: function (k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } },
     set: function (k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
   };
+  var prefs = { /* remembered across visits (language choice) */
+    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
 
   var C = { gold: "#E0A526", gold2: "#F2C14E", green: "#17573A", green2: "#0F3F29", green3: "#0A2B1C", ivory: "#FBF8F2", red: "#A8231B" };
   var current = (location.pathname.split("/").pop() || "index.html").toLowerCase();
@@ -221,7 +225,7 @@
   var LANGS = [["EN", "English", "en"], ["KU", "Kurdî — Kurmanji", "kmr"], ["SO", "کوردی — Sorani", "ckb"], ["AR", "العربية — Arabic", "ar"]];
 
   function langSelector(labelledBy) {
-    return '<div class="lang" role="group" ' + (labelledBy ? 'aria-labelledby="' + labelledBy + '"' : 'aria-label="Language (preview)"') + ">" +
+    return '<div class="lang" role="group" ' + (labelledBy ? 'aria-labelledby="' + labelledBy + '"' : 'aria-label="Language"') + ">" +
       LANGS.map(function (l) {
         return '<button type="button" data-lang="' + l[0] + '" aria-pressed="' + (l[0] === "EN") + '" title="' + l[1] + '"><span aria-hidden="true">' + l[0] + '</span><span class="visually-hidden">' + l[1] + "</span></button>";
       }).join("") + "</div>";
@@ -245,7 +249,7 @@
     return '<a class="skip-link" href="#main">Skip to main content</a>' +
       '<div class="proto-bar" id="proto-bar" role="region" aria-label="Prototype notice"><div class="container">' +
       '<span class="proto-bar__tag">' + ic("lock") + ' Private preview</span>' +
-      '<p>Pre-launch design prototype for trustee review. <span class="long">Not indexed by search engines. Donations, forms and translations are demonstration only.</span></p>' +
+      '<p>Pre-launch design prototype for trustee review. <span class="long">Not indexed by search engines. Donations and forms are demonstration only.</span></p>' +
       '<button type="button" data-dismiss-proto>Hide</button></div></div>' +
       '<header class="site-header" id="site-header"><div class="container header-inner">' +
       '<a class="brand" href="index.html" aria-label="Kurds for Christ — home"><span class="brand__mark"><img src="assets/logo-emblem.png" alt="" width="79" height="46"></span>' +
@@ -265,7 +269,7 @@
       '<div class="drawer__body"><div class="drawer__ctas"><a class="btn btn--gold btn--lg" href="donate.html">' + ic("heart") + ' Donate</a><a class="btn btn--outline" href="get-involved.html#partner">Partner With Us</a></div>' +
       '<nav aria-label="Mobile"><ul class="drawer__nav">' + dnav + "</ul></nav>" +
       '<div><p class="drawer__label">Our work</p><ul class="drawer__sub">' + dsub + "</ul></div>" +
-      '<div><p class="drawer__label" id="drawer-lang">Language (preview)</p>' + langSelector("drawer-lang") + "</div>" +
+      '<div><p class="drawer__label" id="drawer-lang">Language</p>' + langSelector("drawer-lang") + "</div>" +
       '<p class="drawer__foot">Liverpool, England · info@kurdsforchrist.org<br>Charity registration pending.</p></div></div>';
   }
 
@@ -388,29 +392,71 @@
     toastTimer = setTimeout(function () { toast.classList.remove("is-shown"); }, 4200);
   }
 
-  /* Language selector: visual preview only. SO / AR flip to right-to-left to show RTL readiness. */
-  var LANG_MSG = {
-    EN: "English selected.",
-    KU: "Kurmanji preview: translated text will be added after launch. Layout stays left-to-right.",
-    SO: "Sorani preview: showing the right-to-left layout. Translated text will be added after launch.",
-    AR: "Arabic preview: showing the right-to-left layout. Translated text will be added after launch."
-  };
-  function applyLang(code, announce) {
-    document.documentElement.setAttribute("dir", code === "SO" || code === "AR" ? "rtl" : "ltr");
-    $$(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-lang") === code ? "true" : "false"); });
-    store.set("kfc-lang", code);
-    if (announce) showToast(LANG_MSG[code]);
+  /* Language selector: swaps every visible string using the dictionaries in i18n/<code>.js.
+     The English text in the HTML is the key; anything without a translation stays in English. */
+  var I18N = window.KFC_I18N = window.KFC_I18N || {};
+  var LANG = "EN";
+  var LANG_FILE = { KU: "kmr", SO: "ckb", AR: "ar" };
+  var HTML_LANG = { EN: "en", KU: "kmr", SO: "ckb", AR: "ar" };
+  var I18N_ATTRS = ["aria-label", "title", "alt", "placeholder", "data-demo", "data-demo-form", "data-label"];
+  function norm(s) { return String(s).replace(/\s+/g, " ").trim(); }
+  function t(s) { var d = I18N[LANG]; return (d && d[norm(s)]) || s; }
+  function swapText(orig) {
+    var key = norm(orig), d = I18N[LANG], tr = key && d && d[key];
+    if (!tr) return orig;
+    return orig.match(/^\s*/)[0] + tr + orig.match(/\s*$/)[0];
   }
-  $$(".lang button").forEach(function (b) { b.addEventListener("click", function () { applyLang(b.getAttribute("data-lang"), true); }); });
-  var savedLang = store.get("kfc-lang");
-  if (savedLang && savedLang !== "EN") applyLang(savedLang, false);
+  function translateDom() {
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) { var p = n.parentNode && n.parentNode.nodeName; return p === "SCRIPT" || p === "STYLE" ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT; }
+    });
+    var n;
+    while ((n = walker.nextNode())) {
+      if (n.__en === undefined) n.__en = n.nodeValue;
+      n.nodeValue = LANG === "EN" ? n.__en : swapText(n.__en);
+    }
+    $$("[" + I18N_ATTRS.join("],[") + "]").forEach(function (el) {
+      el.__enAttr = el.__enAttr || {};
+      I18N_ATTRS.forEach(function (a) {
+        if (!el.hasAttribute(a)) return;
+        if (el.__enAttr[a] === undefined) el.__enAttr[a] = el.getAttribute(a);
+        el.setAttribute(a, LANG === "EN" ? el.__enAttr[a] : swapText(el.__enAttr[a]));
+      });
+    });
+    if (document.__enTitle === undefined) document.__enTitle = document.title;
+    document.title = LANG === "EN" ? document.__enTitle : swapText(document.__enTitle);
+  }
+  function loadLang(code, cb) {
+    if (code === "EN" || I18N[code]) { cb(); return; }
+    var s = document.createElement("script");
+    s.src = "i18n/" + LANG_FILE[code] + ".js?v=1";
+    s.onload = cb;
+    s.onerror = function () { showToast("Translation could not be loaded."); };
+    document.head.appendChild(s);
+  }
+  function applyLang(code) {
+    if (!HTML_LANG[code]) code = "EN";
+    loadLang(code, function () {
+      LANG = code;
+      document.documentElement.setAttribute("lang", HTML_LANG[code]);
+      document.documentElement.setAttribute("dir", code === "SO" || code === "AR" ? "rtl" : "ltr");
+      $$(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-lang") === code ? "true" : "false"); });
+      prefs.set("kfc-lang", code);
+      translateDom();
+      document.dispatchEvent(new CustomEvent("kfc:lang"));
+    });
+  }
+  $$(".lang button").forEach(function (b) { b.addEventListener("click", function () { applyLang(b.getAttribute("data-lang")); }); });
+  var QMAP = { EN: "EN", KU: "KU", KMR: "KU", SO: "SO", CKB: "SO", AR: "AR" };
+  var startLang = QMAP[(new URLSearchParams(location.search).get("lang") || "").toUpperCase()] || prefs.get("kfc-lang");
+  if (startLang && startLang !== "EN") applyLang(startLang);
 
   /* Demo dialog */
   var dialog = $("#demo-dialog");
   function openDialog(msg, title) {
     if (!dialog) { window.alert(msg); return; }
-    $("#demo-dialog-text").textContent = msg;
-    $("#demo-dialog-title").textContent = title || "Prototype preview";
+    $("#demo-dialog-text").textContent = t(msg);
+    $("#demo-dialog-title").textContent = t(title || "Prototype preview");
     if (typeof dialog.showModal === "function") dialog.showModal(); else dialog.setAttribute("open", "");
   }
   function closeDialog() { if (dialog.close) dialog.close(); else dialog.removeAttribute("open"); }
@@ -419,10 +465,10 @@
     dialog.addEventListener("click", function (e) { if (e.target === dialog) closeDialog(); });
   }
   $$("[data-demo]").forEach(function (el) {
-    el.addEventListener("click", function (e) { e.preventDefault(); openDialog(el.getAttribute("data-demo")); });
+    el.addEventListener("click", function (e) { e.preventDefault(); openDialog(el.__enAttr && el.__enAttr["data-demo"] || el.getAttribute("data-demo")); });
   });
   $$("form[data-demo-form]").forEach(function (f) {
-    f.addEventListener("submit", function (e) { e.preventDefault(); openDialog(f.getAttribute("data-demo-form"), "Thank you — demo only"); f.reset(); });
+    f.addEventListener("submit", function (e) { e.preventDefault(); openDialog(f.__enAttr && f.__enAttr["data-demo-form"] || f.getAttribute("data-demo-form"), "Thank you — demo only"); f.reset(); });
   });
 
   /* Filters (stories, news, archive) */
@@ -436,7 +482,7 @@
           var match = f === "all" || item.getAttribute("data-filter-item") === f;
           item.hidden = !match; if (match) shown++;
         });
-        showToast(shown + (shown === 1 ? " item" : " items") + " shown");
+        showToast(shown + " " + t(shown === 1 ? "item shown" : "items shown"));
       });
     });
   });
@@ -462,15 +508,15 @@
     var update = function () {
       var a = form.querySelector('input[name="amount"]:checked').value;
       var monthly = form.querySelector('input[name="freq"]:checked').value === "monthly";
-      var fund = form.querySelector('input[name="fund"]:checked').getAttribute("data-label");
+      var fundEl = form.querySelector('input[name="fund"]:checked'), fund = t(fundEl.__enAttr && fundEl.__enAttr["data-label"] || fundEl.getAttribute("data-label"));
       customWrap.hidden = a !== "custom";
       var amt = a === "custom" ? parseFloat(customInput.value) : parseFloat(a);
       var ok = amt && amt > 0;
       $("#sum-amount").textContent = ok ? fmt(amt) : "£—";
-      $("#sum-freq").textContent = monthly ? "Monthly gift" : "One-time gift";
+      $("#sum-freq").textContent = t(monthly ? "Monthly gift" : "One-time gift");
       $("#sum-fund").textContent = fund;
-      $("#donate-btn-text").textContent = ok ? "Donate " + fmt(amt) + (monthly ? " monthly" : "") : "Enter an amount";
-      $("#impact-line").textContent = a === "custom" ? "Every gift, of any size, is recorded and used responsibly." : IMPACT[a] + " (Illustrative example, not a costed figure.)";
+      $("#donate-btn-text").textContent = ok ? t("Donate") + " " + fmt(amt) + (monthly ? " " + t("monthly") : "") : t("Enter an amount");
+      $("#impact-line").textContent = a === "custom" ? t("Every gift, of any size, is recorded and used responsibly.") : t(IMPACT[a]) + " " + t("(Illustrative example, not a costed figure.)");
     };
     form.addEventListener("change", function (e) {
       update();
@@ -479,9 +525,10 @@
     customInput.addEventListener("input", update);
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      openDialog("Donation processing is not active in this private prototype. No payment has been taken and no details have been stored. Your selection: " +
+      openDialog(t("Donation processing is not active in this private prototype. No payment has been taken and no details have been stored. Your selection:") + " " +
         $("#sum-amount").textContent + " · " + $("#sum-freq").textContent + " · " + $("#sum-fund").textContent + ".", "Donation not processed");
     });
     update();
+    document.addEventListener("kfc:lang", update);
   }
 })();
