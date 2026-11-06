@@ -839,3 +839,15 @@ html[lang="ar"], html[lang="ckb"] {
 }
 html[lang="ar"] body, html[lang="ckb"] body { line-height: 1.75; }
 html[lang="ar"] *, html[lang="ckb"] * { letter-spacing: 0 !important; }
+
+/* Header falls back to the compact (Menu button) layout whenever the full nav doesn't fit — set by app.js fitHeader(). */
+.site-header.is-compact .primary-nav { display: none; }
+.site-header.is-compact .menu-toggle { display: inline-flex; }
+.site-header.is-compact .header-inner { justify-content: space-between; }
+.site-header.is-compact .mega { display: none !important; }
+.header-inner { min-width: 0; }
+.brand__text { min-width: 0; }
+/* Wider header row on large screens so the full menu fits; tight mode trims extras before collapsing. */
+.site-header .header-inner { max-width: 1480px; gap: 16px; }
+.site-header.is-tight .btn--partner, .site-header.is-tight .brand__tag { display: none; }
+.site-header.is-tight .primary-nav a, .site-header.is-tight .primary-nav .nav-btn { padding-inline: 7px; }
