@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.*
+!.env.example
+.claude/ACCESS.json
+dist/
+build/
+.hermes/inbox/
+.hermes/outbox/
+.hermes/approvals/
+.hermes/reports/

@@ -1,0 +1,3 @@
+# Private pre-launch prototype for trustee review. Do not index.
+User-agent: *
+Disallow: /

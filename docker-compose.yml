@@ -1,0 +1,10 @@
+services:
+  web:
+    image: nginx:alpine
+    container_name: kurd4crist-web
+    restart: unless-stopped
+    volumes: ["./public:/usr/share/nginx/html:ro"]
+    ports: ["127.0.0.1:3405:80"]
+    networks: ["kurd4crist_net"]
+networks:
+  kurd4crist_net: { name: kurd4crist_net }

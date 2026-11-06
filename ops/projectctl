@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Safe project control — the ONLY interface Hermes runs from Telegram.
+set -uo pipefail
+cd "$(cd "$(dirname "$0")/.." && pwd)" || exit 1
+COMPOSE=$(ls docker-compose*.yml compose*.yml deploy/compose*.yml 2>/dev/null | head -1)
+dc(){ [ -n "$COMPOSE" ] && docker compose -f "$COMPOSE" "$@" || docker compose "$@"; }
+case "${1:-status}" in
+  status) echo "== git =="; git status --short 2>/dev/null | head; echo "== containers =="; dc ps 2>/dev/null || docker ps --filter "name=$(basename "$PWD")";;
+  git)    git status --short 2>/dev/null; echo; git log -3 --oneline 2>/dev/null;;
+  logs)   dc logs --tail=100 2>/dev/null;;
+  test)   [ -f package.json ] && npm test 2>&1 | tail -30 || echo "no test runner";;
+  handoff) cat docs/SESSION_HANDOFF.md 2>/dev/null;;
+  report) echo "# $(basename "$PWD") report $(date -u +%FT%TZ)"; git log -1 --oneline 2>/dev/null; dc ps 2>/dev/null | tail -n +1;;
+  *) echo "usage: projectctl status|git|logs|test|handoff|report";;
+esac

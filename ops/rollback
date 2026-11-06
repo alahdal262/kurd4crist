@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# ops/rollback — return this project to its factory baseline, or to any tag.
+# Created by hermes-new-project. Scope: THIS project only.
+set -euo pipefail
+cd "$(cd "$(dirname "$0")/.." && pwd)"
+TARGET="${1:-factory-baseline}"
+git rev-parse -q --verify "refs/tags/$TARGET" >/dev/null \
+  || { echo "no such tag: $TARGET"; git tag -l; exit 1; }
+echo "→ rolling kurd4crist back to $TARGET"
+git stash push -u -m "pre-rollback $(date -u +%FT%TZ)" >/dev/null 2>&1 || true
+git reset --hard "$TARGET"
+docker compose up -d --build
+echo "✓ rolled back to $TARGET (previous working tree is in git stash)"

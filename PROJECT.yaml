@@ -1,0 +1,12 @@
+project: { id: kurd4crist, name: kurd4crist, owner: Infragate Solutions Ltd }
+paths: { root: /opt/kurd4crist, docs: /opt/kurd4crist/docs, hermes: /opt/kurd4crist/.hermes, ops: /opt/kurd4crist/ops }
+runtime:
+  user: root
+  tmux_session: kurd4crist-claude
+  code_server_url: https://kurd4crist-vs.infragatesolutions.com
+  compose_project: kurd4crist
+github: { repo_alias: alahdal262/kurd4crist, branch: - }
+domains: [ kurd4crist.infragatesolutions.com ]
+ai:
+  claude_code: { enabled: true, working_directory: /opt/kurd4crist }
+  hermes: { role: monitor-organize-report, can_edit_code: false, production_requires_approval: true }

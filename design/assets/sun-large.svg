@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 400">
+  <defs><path id="r" d="M195.12 104.12 L200 4 L204.88 104.12Z" fill="#F2C14E"/></defs>
+  <use href="#r" xlink:href="#r"/>
+  <use href="#r" xlink:href="#r" transform="rotate(17.143 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(34.286 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(51.429 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(68.571 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(85.714 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(102.857 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(120 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(137.143 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(154.286 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(171.429 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(188.571 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(205.714 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(222.857 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(240 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(257.143 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(274.286 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(291.429 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(308.571 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(325.714 200 200)"/>
+  <use href="#r" xlink:href="#r" transform="rotate(342.857 200 200)"/>
+  <circle cx="200" cy="200" r="80" fill="none" stroke="#F2C14E" stroke-width="3"/>
+  <circle cx="200" cy="200" r="62" fill="#F2C14E" opacity=".5"/>
+</svg>

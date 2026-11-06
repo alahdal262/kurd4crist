@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Kurds for Christ emblem">
+  <title>Kurds for Christ emblem: a golden sun with twenty-one rays and a cross rising above mountains</title>
+  <defs>
+    <path id="r" d="M30.54 12.55 L32 1 L33.46 12.55Z" fill="#E0A526"/>
+    <clipPath id="c"><circle cx="32" cy="32" r="17"/></clipPath>
+  </defs>
+  <g>
+    <use href="#r" xlink:href="#r"/>
+    <use href="#r" xlink:href="#r" transform="rotate(17.143 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(34.286 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(51.429 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(68.571 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(85.714 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(102.857 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(120 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(137.143 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(154.286 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(171.429 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(188.571 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(205.714 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(222.857 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(240 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(257.143 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(274.286 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(291.429 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(308.571 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(325.714 32 32)"/>
+    <use href="#r" xlink:href="#r" transform="rotate(342.857 32 32)"/>
+  </g>
+  <circle cx="32" cy="32" r="17" fill="#E0A526"/>
+  <g clip-path="url(#c)"><path d="M12 50 L21 38 L26 42 L32 34.5 L38 41.5 L42.5 37 L54 50Z" fill="#17573A"/></g>
+  <path d="M30.4 16.5h3.2v18.5h-3.2z M25.8 21.6h12.4v3.1H25.8z" fill="#FBF8F2"/>
+</svg>
