@@ -248,7 +248,7 @@
       '<p>Pre-launch design prototype for trustee review. <span class="long">Not indexed by search engines. Donations, forms and translations are demonstration only.</span></p>' +
       '<button type="button" data-dismiss-proto>Hide</button></div></div>' +
       '<header class="site-header" id="site-header"><div class="container header-inner">' +
-      '<a class="brand" href="index.html" aria-label="Kurds for Christ — home"><span class="brand__mark">' + markSvg() + '</span>' +
+      '<a class="brand" href="index.html" aria-label="Kurds for Christ — home"><span class="brand__mark"><img src="assets/logo-emblem.png" alt="" width="79" height="46"></span>' +
       '<span class="brand__text"><span class="brand__name">Kurds for Christ</span><span class="brand__tag">Faith • Community • Heritage • Hope</span></span></a>' +
       '<nav class="primary-nav" aria-label="Main"><ul>' + items + "</ul></nav>" +
       '<div class="header-actions">' + langSelector() +
@@ -260,7 +260,7 @@
       '<a class="link-arrow" href="what-we-do.html">Overview of our work ' + ic("arrow-right") + "</a></div>" +
       '<ul class="mega__grid">' + mega + "</ul></div></div></header>" +
       '<div class="drawer" id="drawer" hidden role="dialog" aria-modal="true" aria-label="Site menu"><div class="drawer__top">' +
-      '<a class="brand" href="index.html"><span class="brand__mark">' + markSvg() + '</span><span class="brand__text"><span class="brand__name">Kurds for Christ</span></span></a>' +
+      '<a class="brand" href="index.html"><span class="brand__mark"><img src="assets/logo-emblem.png" alt="" width="79" height="46"></span><span class="brand__text"><span class="brand__name">Kurds for Christ</span></span></a>' +
       '<button class="drawer__close" type="button" data-close-drawer aria-label="Close menu">' + ic("x") + "</button></div>" +
       '<div class="drawer__body"><div class="drawer__ctas"><a class="btn btn--gold btn--lg" href="donate.html">' + ic("heart") + ' Donate</a><a class="btn btn--outline" href="get-involved.html#partner">Partner With Us</a></div>' +
       '<nav aria-label="Mobile"><ul class="drawer__nav">' + dnav + "</ul></nav>" +
@@ -277,7 +277,7 @@
       return '<a href="#" data-demo="Social media profiles will be linked after launch." aria-label="' + s[0] + ' (placeholder)">' + ic(s[1]) + "</a>";
     }).join("");
     return '<footer class="site-footer on-dark"><img class="footer-sun" src="assets/sun-large.svg" alt=""><div class="container"><div class="footer-top">' +
-      '<div class="footer-brand"><a class="brand" href="index.html"><span class="brand__mark">' + markSvg() + '</span><span class="brand__text"><span class="brand__name">Kurds for Christ</span><span class="brand__tag">Kurdish Christian charity</span></span></a>' +
+      '<div class="footer-brand"><a class="brand" href="index.html"><span class="brand__mark"><img src="assets/logo-emblem.png" alt="" width="79" height="46"></span><span class="brand__text"><span class="brand__name">Kurds for Christ</span><span class="brand__tag">Kurdish Christian charity</span></span></a>' +
       '<p class="footer-word">KURDS FOR CHRIST</p><p class="footer-tag">Faith • Community • Heritage • Hope</p>' +
       '<address class="footer-address">Liverpool, England<br>United Kingdom</address>' +
       '<div class="footer-contact"><a href="mailto:info@kurdsforchrist.org">' + ic("mail") + ' info@kurdsforchrist.org</a><a href="index.html">' + ic("globe") + " kurdsforchrist.org</a></div>" +

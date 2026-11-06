@@ -1,3 +1,15 @@
 # Private pre-launch prototype for trustee review. Do not index.
+# Link-preview bots (Facebook, WhatsApp, X, LinkedIn, Telegram, Slack) may read pages so shared links show a preview image.
+User-agent: facebookexternalhit
+User-agent: Facebot
+User-agent: meta-externalagent
+User-agent: WhatsApp
+User-agent: Twitterbot
+User-agent: LinkedInBot
+User-agent: TelegramBot
+User-agent: Slackbot-LinkExpanding
+User-agent: Discordbot
+Allow: /
+
 User-agent: *
 Disallow: /

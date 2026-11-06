@@ -9,3 +9,5 @@ build/
 .hermes/outbox/
 .hermes/approvals/
 .hermes/reports/
+.claude/CloudFlare
+.claude/GitHub
